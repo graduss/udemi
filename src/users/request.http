@@ -1,11 +1,6 @@
-### Create User
-POST http://localhost:3000/auth/signup
-Content-Type: application/json
-
-{
-  "email": "test@tt.tt",
-  "password": "test"
-}
+### get me
+GET http://localhost:3000/user/me
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNzIwNTU2NjQ5LCJleHAiOjE3MjMyMzUwNDl9.sEoyO5scYVmp6qd5JhriU8PGZtGFR07cbChTcQFzkG8
 
 ### Get user by id
 GET http://localhost:3000/auth/2

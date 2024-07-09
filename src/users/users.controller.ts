@@ -6,22 +6,25 @@ import {
   NotFoundException,
   Param,
   Patch,
-  Post,
   Query,
+  Request,
 } from '@nestjs/common';
-import { CreateUserDto, UpdateUserDto } from './dtos';
+import { UpdateUserDto } from './dtos';
 import { UsersService } from './users.service';
 import { Serialize } from 'src/iterceptors/Serialize.interceptor';
 import { UserDto } from './dtos/user.dto';
+import { Auth } from 'src/auth/decorators/auth.decorator';
+import { UserEntity } from './user.entity';
 
-@Controller('auth')
+@Controller('user')
 @Serialize(UserDto)
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
-  @Post('/signup')
-  create(@Body() user: CreateUserDto) {
-    return this.userService.create(user.email, user.password);
+  @Get('/me')
+  @Auth()
+  getMe(@Request() { user }: { user: UserEntity }) {
+    return user;
   }
 
   @Get('/:id')
